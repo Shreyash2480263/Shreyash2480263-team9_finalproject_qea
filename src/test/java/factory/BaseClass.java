@@ -1,4 +1,4 @@
-package testBase;
+package factory;
 
 import java.io.FileInputStream;
 import java.time.Duration;
@@ -12,10 +12,6 @@ import org.testng.annotations.BeforeSuite;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-
-import utilities.DriverFactory;
-import utilities.ExtentManager;
-import utilities.ScreenshotUtils;
 
 public class BaseClass {
 
