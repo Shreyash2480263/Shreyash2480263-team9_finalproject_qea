@@ -1,4 +1,4 @@
-package pageObjects;
+package pages;
 
 public class MoviePage {
 }
