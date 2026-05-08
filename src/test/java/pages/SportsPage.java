@@ -38,7 +38,7 @@ public class SportsPage {
     By applyButton    = By.xpath("//button[contains(.,'Apply Filters')]");
     By weekendChip    = By.xpath("//*[normalize-space(.)='This Weekend']");
     // Any clickable card that contains a price (₹ or "Free") — matches all sports activity tiles.
-    By eventCard      = By.xpath("//a[@href][.//*[contains(text(),'₹') or contains(text(),'Free')]]");
+    By eventCard      = By.xpath("//div[@class='dds-grid dds-gap-x-3 md:dds-gap-x-4 dds-grid-cols-1 dds-gap-y-8 md:dds-grid-cols-2 lg:dds-grid-cols-3 xl:dds-grid-cols-4 dds-justify-items-center lg:dds-justify-items-start']/a");
 
     // --- Actions ---
 
@@ -67,17 +67,30 @@ public class SportsPage {
         wait.until(ExpectedConditions.elementToBeClickable(applyButton)).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(applyButton));
 
+        // Grab the first card currently in the DOM (if any) so we can detect when the DOM refreshes.
+        List<WebElement> existingCards = driver.findElements(eventCard);
+        WebElement cardBeforeFilter = existingCards.isEmpty() ? null : existingCards.get(0);
+
         // Click "This Weekend" chip
         wait.until(ExpectedConditions.elementToBeClickable(weekendChip)).click();
 
-        // Scroll past the filter chips so the event cards section comes into view.
+        // Wait for the old cards to go stale — this confirms the AJAX filter has fired and the DOM has refreshed.
+        if (cardBeforeFilter != null) {
+            try {
+                new WebDriverWait(driver, Duration.ofSeconds(10))
+                        .until(ExpectedConditions.stalenessOf(cardBeforeFilter));
+            } catch (TimeoutException ignored) {
+                log.warn("Old card did not go stale — page may not have refreshed.");
+            }
+        }
 
+        // Scroll past the filter chips so the event cards section comes into view.
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 600)");
 
-        // Wait up to 12 seconds for at least one event card to appear in the DOM.
+        // Now wait for the freshly filtered cards to appear.
         try {
             new WebDriverWait(driver, Duration.ofSeconds(12))
-                    .until(ExpectedConditions.presenceOfElementLocated(eventCard));
+                    .until(ExpectedConditions.visibilityOfElementLocated(eventCard));
         } catch (TimeoutException ignored) {
             log.info("No event cards visible yet — will scroll & re-check.");
         }
