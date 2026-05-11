@@ -1,6 +1,6 @@
-Feature: Sign In with invalid credentials
+Feature:Sign In with invalid credentials
 
-  Scenario: TC3 - Sign in with invalid mobile number shows an error
+  Scenario:Sign in with invalid mobile number shows an error
     Given the user is on the district.in home page
     When the user clicks the Sign In button
     And the user enters an invalid mobile number

@@ -43,16 +43,12 @@ public class SportsPage {
     // --- Actions ---
 
     public boolean applyWeekendSportsFilter() {
-        // Open filter panel
         wait.until(ExpectedConditions.elementToBeClickable(filtersButton)).click();
 
-        // Click "Sort By Date" tab
         wait.until(ExpectedConditions.elementToBeClickable(dateSortOption)).click();
 
-        // Click "Genre" tab — wait for it to be active
         wait.until(ExpectedConditions.elementToBeClickable(genreTab)).click();
 
-        // Look for "Sports" in genre list. Some cities don't have it.
         try {
             WebElement sports = wait.until(ExpectedConditions.elementToBeClickable(sportsOption));
             ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", sports);
@@ -63,18 +59,14 @@ public class SportsPage {
             return false;
         }
 
-        // Click "Apply Filters" — then wait for the filter panel to close
         wait.until(ExpectedConditions.elementToBeClickable(applyButton)).click();
         wait.until(ExpectedConditions.invisibilityOfElementLocated(applyButton));
 
-        // Grab the first card currently in the DOM (if any) so we can detect when the DOM refreshes.
         List<WebElement> existingCards = driver.findElements(eventCard);
         WebElement cardBeforeFilter = existingCards.isEmpty() ? null : existingCards.get(0);
 
-        // Click "This Weekend" chip
         wait.until(ExpectedConditions.elementToBeClickable(weekendChip)).click();
 
-        // Wait for the old cards to go stale — this confirms the AJAX filter has fired and the DOM has refreshed.
         if (cardBeforeFilter != null) {
             try {
                 new WebDriverWait(driver, Duration.ofSeconds(10))
@@ -84,10 +76,8 @@ public class SportsPage {
             }
         }
 
-        // Scroll past the filter chips so the event cards section comes into view.
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 600)");
 
-        // Now wait for the freshly filtered cards to appear.
         try {
             new WebDriverWait(driver, Duration.ofSeconds(12))
                     .until(ExpectedConditions.visibilityOfElementLocated(eventCard));
@@ -102,26 +92,20 @@ public class SportsPage {
 
     public List<Event> getAllEvents() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        // Don't go all the way to the top — we want to start scraping from where the cards begin.
-        // applyWeekendSportsFilter already scrolled past the filter chips for us.
 
         List<Event> events = new ArrayList<>();
         Set<String> seenLinks = new HashSet<>();
         long lastScrollY = -1;
 
-        // Scroll up to 25 times. Stop when scroll position stops changing (= bottom of page).
         for (int i = 0; i < 25; i++) {
-            // Read every event card currently in the DOM
             for (WebElement card : driver.findElements(eventCard)) {
                 Event e = readCard(card, seenLinks);
                 if (e != null) events.add(e);
             }
 
-            // Remember scroll position, then scroll one screen down
             long beforeY = ((Number) js.executeScript("return window.pageYOffset")).longValue();
             js.executeScript("window.scrollBy(0, window.innerHeight)");
 
-            // Wait until either the scroll actually happened, OR 2s passes (= we are at the bottom)
             try {
                 new WebDriverWait(driver, Duration.ofSeconds(2))
                         .pollingEvery(Duration.ofMillis(300))
@@ -130,7 +114,6 @@ public class SportsPage {
                             return y > beforeY;
                         });
             } catch (TimeoutException ignored) {
-                // No scroll happened — we hit the bottom of the page
             }
 
             long afterY = ((Number) js.executeScript("return window.pageYOffset")).longValue();
@@ -155,7 +138,6 @@ public class SportsPage {
             String[] lines = fullText.split("\\r?\\n");
             if (lines.length < 2) return null;         // not enough info, skip
 
-            // Find the line containing the price
             String priceText  = "";
             int    priceIndex = -1;
             for (int i = 0; i < lines.length; i++) {
@@ -167,7 +149,6 @@ public class SportsPage {
                 }
             }
 
-            // Layout: line 0 = date, line 1 = name, line 2 = venue, line 3 = price
             String date  = lines[0].trim();
             String name  = lines.length > 1 ? lines[1].trim() : "";
             String venue = (lines.length > 2 && priceIndex != 2) ? lines[2].trim() : "";
@@ -181,7 +162,6 @@ public class SportsPage {
         }
     }
 
-    // --- Inner class to hold one event ---
     public static class Event {
         public String name;
         public String date;

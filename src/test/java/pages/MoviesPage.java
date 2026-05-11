@@ -46,7 +46,6 @@ public class MoviesPage {
             }
         }
 
-        // Close the filter panel so the next test isn't blocked by it
         driver.findElement(By.tagName("body")).sendKeys(Keys.ESCAPE);
 
         log.info("Languages found: " + languages.size());

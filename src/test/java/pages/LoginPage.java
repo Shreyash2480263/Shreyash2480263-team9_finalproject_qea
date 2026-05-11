@@ -23,20 +23,15 @@ public class LoginPage {
     }
 
     // --- Locators ---
-    // The profile circle in the top-right of the header
     By signInButton = By.xpath("//*[@id=\"master-header\"]/div/div[1]/div[2]/div[2]/div[2]/div");
 
-    // The mobile number input
     By mobileInput = By.cssSelector("input[inputmode='numeric']");
 
     By continueBtn = By.xpath("//button[normalize-space(.)='Continue']");
 
-    // The red error text shown below the input
     By errorMessage = By.cssSelector("[class*='dds-text-red']");
 
     // --- Actions ---
-
-
     public void clickSignInButton() {
         wait.until(ExpectedConditions.elementToBeClickable(signInButton)).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(mobileInput));

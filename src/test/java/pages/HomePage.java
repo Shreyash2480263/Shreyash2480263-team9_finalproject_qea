@@ -32,23 +32,18 @@ public class HomePage {
     By moviesLink     = By.xpath("//*[normalize-space(.)='Movies']");
 
     // --- Actions ---
-
     public void selectCity() {
         String city = ConfigReader.get("city");
 
-        // 1. Click the location button
         wait.until(ExpectedConditions.elementToBeClickable(locationButton)).click();
 
-        // 2. Type city name (search box appears after clicking the button)
         WebElement searchBox = wait.until(ExpectedConditions.visibilityOfElementLocated(citySearchBox));
         searchBox.clear();
         searchBox.sendKeys(city);
 
-        // 3. Click matching city in dropdown
         By cityOption = By.xpath("//*[normalize-space(text())='" + city + "']");
         wait.until(ExpectedConditions.elementToBeClickable(cityOption)).click();
 
-        // 4. Wait for the city picker to close
         wait.until(ExpectedConditions.invisibilityOfElementLocated(citySearchBox));
 
         log.info("City selected: " + city);
@@ -68,7 +63,6 @@ public class HomePage {
 
     public void goHome() {
         driver.get(ConfigReader.get("url"));
-        // Wait until we are back on the home page (Events link clickable again)
         wait.until(ExpectedConditions.elementToBeClickable(eventsLink));
     }
 }

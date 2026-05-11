@@ -8,7 +8,6 @@ import pages.MoviesPage;
 
 import java.util.List;
 
-// TC2: Extract all movie languages and display them.
 public class MoviesTest extends BaseTest {
 
     @Test(priority = 2)

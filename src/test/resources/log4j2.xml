@@ -1,16 +1,14 @@
 <Configuration status="WARN">
-    <!--  Where logs go  -->
     <Appenders>
-        <!--  1. Console — prints to IntelliJ run window  -->
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss} %-5level %c{1} - %msg%n"/>
         </Console>
-        <!--  2. File — saves logs to test-output/automation.log  -->
         <File name="File" fileName="test-output/automation.log" append="false">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5level %c{1} - %msg%n"/>
         </File>
     </Appenders>
-    <!--  Send all logs (info and above) to both Console and File  -->
+
+
     <Loggers>
         <Root level="info">
             <AppenderRef ref="Console"/>

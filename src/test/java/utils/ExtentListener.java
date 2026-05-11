@@ -14,7 +14,6 @@ public class ExtentListener implements ITestListener {
     private ExtentReports extent;
     private ExtentTest    test;
 
-    // Runs once before all tests start
     @Override
     public void onStart(ITestContext context) {
         ExtentSparkReporter spark = new ExtentSparkReporter("test-output/ExtentReport-AllTests.html");
@@ -34,22 +33,14 @@ public class ExtentListener implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         test.log(Status.PASS, "Test passed");
 
-        // Take screenshot and attach to the report
-        String path = Screenshot.take(result.getMethod().getMethodName() + "_PASS");
-        if (path != null) {
-            try { test.addScreenCaptureFromPath(path); } catch (Exception ignored) {}
-        }
+
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         test.log(Status.FAIL, "Test failed: " + result.getThrowable());
 
-        // Take screenshot and attach to the report
-        String path = Screenshot.take(result.getMethod().getMethodName() + "_FAIL");
-        if (path != null) {
-            try { test.addScreenCaptureFromPath(path); } catch (Exception ignored) {}
-        }
+
     }
 
     @Override
