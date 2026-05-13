@@ -36,6 +36,7 @@ public class BaseTest {
     public void closeBrowser() {
         if (driver != null) {
             driver.quit();
+            driver = null;
             log.info("Browser closed");
         }
     }
