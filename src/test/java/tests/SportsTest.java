@@ -13,13 +13,14 @@ import java.util.List;
 public class SportsTest extends BaseTest {
 
     @Test(priority = 1)
-    public void displayWeekendSportsByLowestPrice() {
+    public void displayWeekendSportsByLowestPrice() throws InterruptedException {
         HomePage home = new HomePage(driver);
         home.selectCity();
         home.goToEvents();
 
         SportsPage sports = new SportsPage(driver);
         sports.applyWeekendSportsFilter();
+        Thread.sleep(3000);
         List<Event> events = sports.getAllEvents();
 
         Assert.assertFalse(events.isEmpty(), "No sports events found for this weekend.");

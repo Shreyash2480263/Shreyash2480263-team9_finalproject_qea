@@ -1,32 +1,30 @@
-2026-05-13 16:55:09 INFO  BaseTest - Browser opened
-2026-05-13 16:55:15 INFO  HomePage - City selected: Bengaluru
-2026-05-13 16:55:17 INFO  HomePage - Navigated to Events
-2026-05-13 16:55:26 INFO  SportsPage - Sports filter applied for this weekend
-2026-05-13 16:55:33 INFO  SportsPage - Scraped 8 events.
-2026-05-13 16:55:33 INFO  BaseTest - Sports events for this weekend:
-2026-05-13 16:55:33 INFO  BaseTest - IFL by APFC: Bengaluru vs Hyderabad — UFC Fight Pass Show - ₹0 onwards
-2026-05-13 16:55:33 INFO  BaseTest - Screening of Lucknow vs Chennai Live Screening at Underdoggs Whitefield - ₹200
-2026-05-13 16:55:33 INFO  BaseTest - Chess Connect Rapid - ₹299
-2026-05-13 16:55:33 INFO  BaseTest - Chess Connect Triathlon - ₹299
-2026-05-13 16:55:33 INFO  BaseTest - Wed, 13 May onwards, Multiple Dates - ₹500 onwards
-2026-05-13 16:55:33 INFO  BaseTest - Introduction to Squash by SWYNG - Bellandur - ₹650
-2026-05-13 16:55:33 INFO  BaseTest - Hyrox Simulation - ₹990
-2026-05-13 16:55:33 INFO  BaseTest - SWYNG The 1-2-3 Badminton Challenge Tournament - ₹1000
-2026-05-13 16:55:33 INFO  BaseTest - Total: 8
-2026-05-13 16:55:38 INFO  HomePage - Navigated to Movies
-2026-05-13 16:55:40 INFO  MoviesPage - Languages found: 8
-2026-05-13 16:55:40 INFO  BaseTest - Movie languages available on district.in:
-2026-05-13 16:55:40 INFO  BaseTest - 1. English
-2026-05-13 16:55:40 INFO  BaseTest - 2. Hindi
-2026-05-13 16:55:40 INFO  BaseTest - 3. Telugu
-2026-05-13 16:55:40 INFO  BaseTest - 4. Kannada
-2026-05-13 16:55:40 INFO  BaseTest - 5. Malayalam
-2026-05-13 16:55:40 INFO  BaseTest - 6. Tamil
-2026-05-13 16:55:40 INFO  BaseTest - 7. Odia
-2026-05-13 16:55:40 INFO  BaseTest - 8. Marathi
-2026-05-13 16:55:40 INFO  BaseTest - Total languages: 8
-2026-05-13 16:55:43 INFO  SignInSteps - Continuing from current page
-2026-05-13 16:55:44 INFO  LoginPage - Mobile sign-in modal is open
-2026-05-13 16:55:45 INFO  SignInSteps - Entered invalid mobile: 1234567890
-2026-05-13 16:55:45 INFO  SignInSteps - Captured error message: "Please enter a valid mobile number."
-2026-05-13 16:55:53 INFO  BaseTest - Browser closed
+2026-05-13 23:34:21 INFO  BaseTest - Browser opened
+2026-05-13 23:34:25 INFO  HomePage - City selected: Bengaluru
+2026-05-13 23:34:26 INFO  HomePage - Navigated to Events
+2026-05-13 23:34:30 INFO  SportsPage - Sports weekend filter applied.
+2026-05-13 23:34:36 INFO  SportsPage - Collected 4 events.
+2026-05-13 23:34:36 INFO  BaseTest - Sports events for this weekend:
+2026-05-13 23:34:36 INFO  BaseTest - Chess Connect Rapid - ₹299
+2026-05-13 23:34:36 INFO  BaseTest - Wed, 13 May onwards, Multiple Dates - ₹500 onwards
+2026-05-13 23:34:36 INFO  BaseTest - Introduction to Squash by SWYNG - Bellandur - ₹650
+2026-05-13 23:34:36 INFO  BaseTest - Hyrox Simulation - ₹990
+2026-05-13 23:34:36 INFO  BaseTest - Total: 4
+2026-05-13 23:34:42 INFO  HomePage - Navigated to Movies
+2026-05-13 23:34:45 INFO  MoviesPage - Languages found: 10
+2026-05-13 23:34:45 INFO  BaseTest - Movie languages available on district.in:
+2026-05-13 23:34:45 INFO  BaseTest - 1. English
+2026-05-13 23:34:45 INFO  BaseTest - 2. Hindi
+2026-05-13 23:34:45 INFO  BaseTest - 3. Kannada
+2026-05-13 23:34:45 INFO  BaseTest - 4. Telugu
+2026-05-13 23:34:45 INFO  BaseTest - 5. Malayalam
+2026-05-13 23:34:45 INFO  BaseTest - 6. Tamil
+2026-05-13 23:34:45 INFO  BaseTest - 7. Odia
+2026-05-13 23:34:45 INFO  BaseTest - 8. Marathi
+2026-05-13 23:34:45 INFO  BaseTest - 9. Bengali
+2026-05-13 23:34:45 INFO  BaseTest - 10. Oriya
+2026-05-13 23:34:45 INFO  BaseTest - Total languages: 10
+2026-05-13 23:34:48 INFO  SignInSteps - Continuing from current page
+2026-05-13 23:34:48 INFO  LoginPage - Mobile sign-in modal is open
+2026-05-13 23:34:49 INFO  SignInSteps - Entered invalid mobile: 1234567890
+2026-05-13 23:34:49 INFO  SignInSteps - Captured error message: "Please enter a valid mobile number."
+2026-05-13 23:34:59 INFO  BaseTest - Browser closed
